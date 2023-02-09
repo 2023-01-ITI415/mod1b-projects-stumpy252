@@ -63,7 +63,10 @@ public class Slingshot : MonoBehaviour{
         if ( Input.GetMouseButtonUp(0) ) { 
             // The mouse has been released
             aimingMode = false;
-            projectileRigidbody.isKinematic = false; projectileRigidbody.velocity = -mouseDelta * velocityMult; projectile = null;
+            projectileRigidbody.isKinematic = false; 
+            projectileRigidbody.velocity = -mouseDelta * velocityMult;
+            FollowCam.POI = projectile;
+            projectile = null;  
         }
     }
 }
