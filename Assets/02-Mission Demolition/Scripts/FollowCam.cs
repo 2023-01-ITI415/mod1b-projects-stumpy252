@@ -18,9 +18,19 @@ public class FollowCam : MonoBehaviour{
     }
     void FixedUpdate () {
 
-        if (POI == null) return;
+       // if (POI == null) return;
         // Get the position of the poi
-        Vector3 destination = POI.transform.position;
+        //Vector3 destination = POI.transform.position;
+        Vector3 destination = Vector3.zero;
+        if(POI != null){
+            Rigidbody poiRigid = POI.GetComponent<Rigidbody>();
+            if((poiRigid != null) && poiRigid.IsSleeping()){
+                POI = null;
+            }
+        }
+        if(POI != null){
+            destination = POI.transform.position;
+        }
         destination.x = Mathf.Max( minXY.x, destination.x );
         destination.y = Mathf.Max( minXY.y, destination.y );
          

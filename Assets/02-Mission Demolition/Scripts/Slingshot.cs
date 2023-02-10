@@ -6,7 +6,8 @@ public class Slingshot : MonoBehaviour{
     [Header("Set in Inspector")]
 
     public GameObject prefabProjectile;
-    public float velocityMult = 8f;
+    public float velocityMult = 10f;
+    public GameObject projLinePrefab;
 
     [Header("Set Dynamically")]
 
@@ -14,7 +15,8 @@ public class Slingshot : MonoBehaviour{
     public Vector3 launchPos; 
     public GameObject projectile; 
     public bool aimingMode;
-    private Rigidbody projectileRigidbody;
+    private Rigidbody projRB;
+    
 
     void Awake() {
         Transform launchPointTrans = transform.Find("LaunchPoint");
@@ -40,8 +42,8 @@ public class Slingshot : MonoBehaviour{
         // Start it at the launchPoint
         projectile.transform.position = launchPos;
         // Set it to isKinematic for now 
-        projectileRigidbody = projectile.GetComponent<Rigidbody>(); 
-        projectileRigidbody.isKinematic = true;
+        projRB = projectile.GetComponent<Rigidbody>(); 
+        projRB.isKinematic = true;
     }
     void Update(){
         // If Slingshot is not in aimingMode, don't run this code
@@ -63,10 +65,12 @@ public class Slingshot : MonoBehaviour{
         if ( Input.GetMouseButtonUp(0) ) { 
             // The mouse has been released
             aimingMode = false;
-            projectileRigidbody.isKinematic = false; 
-            projectileRigidbody.velocity = -mouseDelta * velocityMult;
+            projRB.isKinematic = false; 
+            projRB.velocity = -mouseDelta * velocityMult;
             FollowCam.POI = projectile;
-            projectile = null;  
+            Instantiate<GameObject>(projLinePrefab, projectile.transform);
+            projectile = null; 
+            MissionDemolition.SHOT_FIRED(); 
         }
     }
 }
