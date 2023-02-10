@@ -699,10 +699,10 @@ MonoBehaviour:
   uitShots: {fileID: 493762502}
   castlePos: {x: 50, y: -9.5, z: 0}
   castles:
-  - {fileID: 3565422321755123068, guid: e9db244b152cd4b9dad10411f094c173, type: 3}
   - {fileID: 7288765934706261089, guid: 0a614208e8a334a1e891972d19799578, type: 3}
-  - {fileID: 3953375933501659088, guid: b10fcfdbbf9664023a1e23321018b3b1, type: 3}
+  - {fileID: 3565422321755123068, guid: e9db244b152cd4b9dad10411f094c173, type: 3}
   - {fileID: 4609894309768155657, guid: 86eedc81fe6e34deba5773ff936ffde1, type: 3}
+  - {fileID: 3953375933501659088, guid: b10fcfdbbf9664023a1e23321018b3b1, type: 3}
   - {fileID: 4609894309768155657, guid: 89dae25d895524ae7a1201efe7d25e04, type: 3}
   level: 0
   levelMax: 0
