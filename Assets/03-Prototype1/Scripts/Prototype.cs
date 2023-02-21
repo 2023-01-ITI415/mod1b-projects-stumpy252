@@ -11,6 +11,7 @@ public class Prototype : MonoBehaviour{
     public Text uitLevel;
     public Text uitShots;
     public Text uitScore;
+    public Text uitHighScore;
     public Vector3 castlePos;
     public GameObject[] castles;
 
@@ -20,14 +21,16 @@ public class Prototype : MonoBehaviour{
     public int shotsTaken;
     public int score;
     public int shotsHit;
+    public int highScore;
     public GameObject castle;
     public GameMode mode = GameMode.idle;
     public string showing = "Show Slingshot";
 
     
     void Start(){
+        
+        
         S = this;
-
         score = 0;
         level = 0;
         shotsHit = 0;
@@ -40,6 +43,11 @@ public class Prototype : MonoBehaviour{
         if(castle != null){
             Destroy(castle);
         }
+        if(score > highScore){
+            highScore = score;
+        }
+        shotsHit = 0;
+        shotsTaken = 0;
         Projectile.DESTROY_PROJECTILES();
         //instansiate castle
         castle = Instantiate<GameObject>(castles[level]);
@@ -57,6 +65,7 @@ public class Prototype : MonoBehaviour{
         uitLevel.text = "Level: "+(level+1)+" of "+levelMax;
         uitShots.text = "Shots Taken: "+shotsTaken;
         uitScore.text = "Score: "+score;
+        uitHighScore.text = "High Score: "+highScore;
     }
 
     void Update(){
@@ -65,12 +74,23 @@ public class Prototype : MonoBehaviour{
             mode = GameMode.levelEnd;
             Invoke("NextLevel", 2f);
         }
+        if(score > highScore){
+            highScore = score;
+        }
+         
     }
+    
     void NextLevel(){
         level++;
         if(level == levelMax){
             level = 0;
             shotsTaken = 0;
+            score = 0;
+            shotsHit = 0;
+            
+        }
+        if(score > highScore){
+            highScore = score;
         }
         StartLevel();
     }
@@ -81,7 +101,7 @@ public class Prototype : MonoBehaviour{
         S.shotsHit++;
     }
     static public void SCORE(){
-        S.score += 100 - S.shotsTaken;
+        S.score += 100 / S.shotsTaken;
     }
 
     static public GameObject GET_COLLECTIBLE(){
