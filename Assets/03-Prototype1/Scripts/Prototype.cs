@@ -101,10 +101,10 @@ public class Prototype : MonoBehaviour{
         S.shotsHit++;
     }
     static public void SCORE(){
-        if(S.shotsTaken >= 50){
+        if(S.shotsTaken >= 25){
             S.score += 5;
         }
-        else{S.score += 100 - (S.shotsTaken * 2);}
+        else{S.score += 100 - (S.shotsTaken * 4);}
         
     }
 
