@@ -70,6 +70,7 @@ public class Slingshot1 : MonoBehaviour{
             FollowCam1.POI = projectile;
             Instantiate<GameObject>(projLinePrefab, projectile.transform);
             projectile = null; 
+            Prototype.SHOT_TAKEN();
         }
     }
 }
