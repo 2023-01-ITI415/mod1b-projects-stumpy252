@@ -101,7 +101,11 @@ public class Prototype : MonoBehaviour{
         S.shotsHit++;
     }
     static public void SCORE(){
-        S.score += 100 / S.shotsTaken;
+        if(S.shotsTaken >= 50){
+            S.score += 5;
+        }
+        else{S.score += 100 - (S.shotsTaken * 2);}
+        
     }
 
     static public GameObject GET_COLLECTIBLE(){
